@@ -2,24 +2,24 @@
 
 ## users  table
 
-| Column                   | Type           | Options           |
-|--------------------------|----------------|-------------------|
-| encrypted_password       | string         | null: false       |
-| nickname                 | string         | null: false       |
-| email                    | string         | unique: true      |
-| last_name                | string         | null: false       |
-| first_name               | string         | null: false       |
-| last_name_kana           | string         | null: false       |
-| first_name_kana          | string         | null: false       |
-| birthday                 | date           | null: false       |
+| Column                   | Type           | Options                   |
+|--------------------------|----------------|---------------------------|
+| encrypted_password       | string         | null: false               |
+| nickname                 | string         | null: false               |
+| email                    | string         | null: false, unique: true |
+| last_name                | string         | null: false               |
+| first_name               | string         | null: false               |
+| last_name_kana           | string         | null: false               |
+| first_name_kana          | string         | null: false               |
+| birthday                 | date           | null: false               |
 
 ### Association
 
-* has_many :products_information
-* has_many :purchases_record
+* has_many :products
+* has_many :purchases_records
 
 
-## products_information  table
+## products  table
 
 | Column                      | Type           | Options           |
 |-----------------------------|----------------|-------------------|
@@ -36,7 +36,7 @@
 ### Association
 
 * belongs_to :user
-* has_one :purchases_records
+* has_one :purchases_record
 
 
 ## purchases_records  table
@@ -44,16 +44,16 @@
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
 | user                     | references     | foreign_key: true |
-| product_information      | references     | foreign_key: true |
+| product                  | references     | foreign_key: true |
 
 ### Association
 
 * belongs_to :user
-* belongs_to :products_information
-* belongs_to :deliveries_information
+* belongs_to :product
+* has_one :delivery
 
 
-## deliveries_information  table
+## deliveries  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
@@ -67,7 +67,7 @@
 
 ### Association
 
-* belongs_to :purchases_records
+* belongs_to :purchases_record
 
 
 
