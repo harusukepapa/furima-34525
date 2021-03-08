@@ -1,11 +1,10 @@
 # DB 設計
 
-## users table
+## users  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
-| password                 | string         | null: false       |
-| confirmation_password    | string         | null: false       |
+| encrypted_password       | string         | null: false       |
 | nickname                 | string         | null: false       |
 | email                    | string         | unique: true      |
 | last_name                | string         | null: false       |
@@ -16,59 +15,59 @@
 
 ### Association
 
-* has_many :product_information
-* has_many :purchase_record
+* has_many :products_information
+* has_many :purchases_record
 
 
 ## products_information  table
 
-| Column                   | Type           | Options           |
-|--------------------------|----------------|-------------------|
-| image                    | ActivesStorage | null: false       |
-| product                  | string         | null: false       |
-| product_description      | string         | null: false       |
-| category                 | string         | null: false       |
-| condition                | string         | null: false       |
-| shipping_fee             | string         | null: false       |
-| shipping_area            | string         | null: false       |
-| shipping_time            | string         | null: false       |
-| price                    | integer        | null: false       |
-| user_id                  | references     | foreign_key: true |
+| Column                      | Type           | Options           |
+|-----------------------------|----------------|-------------------|
+| product                     | string         | null: false       |
+| product_description         | text           | null: false       |
+| category_id                 | integer        | null: false       |
+| condition_id                | integer        | null: false       |
+| shipping_fee_id             | integer        | null: false       |
+| shipping_area_id            | integer        | null: false       |
+| shipping_time_id            | integer        | null: false       |
+| price                       | integer        | null: false       |
+| user                        | references     | foreign_key: true |
 
 ### Association
 
 * belongs_to :user
-* has_one :purchase_record
+* has_one :purchases_records
 
 
-## purchases_record  table
+## purchases_records  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
-| buyer_id                 | references     | foreign_key: true |
-| product_id               | references     | foreign_key: true |
+| user                     | references     | foreign_key: true |
+| product_information      | references     | foreign_key: true |
 
 ### Association
 
 * belongs_to :user
-* belongs_to : products_information
-* has_one :shipping_information
+* belongs_to :products_information
+* belongs_to :deliveries_information
 
 
-## shippings_information  table
+## deliveries_information  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
 | postal_code              | string         | null: false       |
-| prefecture               | string         | null: false       |
+| shipping_area_id         | integer        | null: false       |
+| address                  | string         | null: false       |
 | city                     | string         | null: false       |
-| building                 | string         | null: false       |
+| building                 | string         |                   |
 | phone_number             | string         | null: false       |
-| purchase_record_id       | references     | foreign_key: true |
+| purchase_record          | references     | foreign_key: true |
 
 ### Association
 
-* belongs_to :purchases_record
+* belongs_to :purchases_records
 
 
 
