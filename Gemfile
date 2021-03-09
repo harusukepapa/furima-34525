@@ -53,9 +53,14 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 group :development do
   gem 'rubocop', require: false
 end
 =======
+gem 'active_hash'
+>>>>>>> Stashed changes
+=======
+gem 'devise'
 gem 'active_hash'
 >>>>>>> Stashed changes
