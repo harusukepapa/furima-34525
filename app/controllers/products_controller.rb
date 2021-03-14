@@ -7,14 +7,23 @@ class ProductsController < ApplicationController
     @product = Product.new
   end
 
-  def creat
+  def create
+    @product = Product.create(product_params)
+    if @product.save
+      redirect_to root_path
+    else 
+      render :new
+    end
   end
+
 
   private
 
-  def message_params
-    params.require(:message).permit(:content, :image).merge(user_id: current_user.id)
+  def product_params
+    params.require(:product).permit(:image, :product, :product_description, :category_id, :condition_id, :shipping_fee_id, :shipping_area_id, :shipping_time_id, :price ).merge(user_id: current_user.id)
   end
+
+  
 
 
 end
