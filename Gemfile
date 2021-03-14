@@ -57,19 +57,13 @@ group :development do
 end
 
 gem 'devise'
-
 gem 'pry-rails'
-
 gem 'rspec-rails', '~> 4.0.0'
-
 gem 'factory_bot_rails'
-
 gem 'faker'
-
 group :development do
   gem 'rubocop', require: false
 end
-
 gem 'mini_magick'
-
 gem 'image_processing', '~> 1.2'
+gem 'active_hash'
