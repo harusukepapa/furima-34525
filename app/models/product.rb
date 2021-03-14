@@ -8,8 +8,7 @@ class Product < ApplicationRecord
     validates :shipping_fee_id
     validates :shipping_area_id
     validates :shipping_time_id
-    validates :price length: {minimum: 3, maxinum: 7}, numericality: { only_integer: true, greater_than: 300, less_than: 10000000 }, 
-    format: { with: /\A[0-9]+\z/ }
+    validates :price, length: { minimum: 3, maxinum: 7 }, numericality: { only_integer: true, greater_than: 300, less_than: 10000000 }, format: { with: /\A[0-9]+\z/ }
   end
 
 
@@ -26,6 +25,10 @@ class Product < ApplicationRecord
   belongs_to :time
 
   validates :title, :text, presence: true
-  validates :genre_id, numericality: { other_than: 1 } 
+  validates :category_id, numericality: { other_than: 1 } 
+  validates :condition_id, numericality: { other_than: 1 } 
+  validates :area_id, numericality: { other_than: 1 } 
+  validates :fee_id, numericality: { other_than: 1 } 
+  validates :time_id, numericality: { other_than: 1 } 
 
 end
