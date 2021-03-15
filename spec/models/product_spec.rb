@@ -7,8 +7,12 @@ RSpec.describe Product, type: :model do
 
   describe '商品出品機能' do
     context '商品出品が登録できるとき' do
-      it 'productと, product_description, category_id, condition_id, shipping_fee_id , shipping_area_id,shipping_time_id, priceが存在すれば登録できる' do
+      it 'imageとproduct, product_description, category_id, condition_id, shipping_fee_id , shipping_area_id,shipping_time_id, priceが存在すれば登録できる' do
         expect(@product).to be_valid
+      end
+      it '販売価格は半角数字で登録できる' do
+        @product.price = '123456'
+        @product.valid?
       end
     end
 
@@ -63,12 +67,16 @@ RSpec.describe Product, type: :model do
         @product.valid?
         expect(@product.errors.full_messages).to include ("Price must be greater than 299")
       end
-      it '販売価格は、¥9,999,999以上では登録できない' do
+      it '販売価格は、¥10,000,000以上では登録できない' do
         @product.price = '10,000,000'
         @product.valid?
         expect(@product.errors.full_messages).to include ("Price is not a number")
       end
-
+      it '販売価格は半角数字以外は登録できない' do
+        @product.price = 'aaa'
+        @product.valid?
+        expect(@product.errors.full_messages).to include ("Price is not a number")
+      end
 
     end
   end
