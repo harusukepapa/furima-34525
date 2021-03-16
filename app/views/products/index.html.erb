@@ -126,8 +126,6 @@
     <%= link_to '新規投稿商品', "#", class: "subtitle" %>
     <ul class='item-lists'>
 
-      <%# 商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
-
       <li class='list'>
         <%= link_to "#" do %>
         <% @products.each do |product|%>
@@ -146,7 +144,7 @@
             <%= product.product %>
           </h3>
           <div class='item-price'>
-            <span><%= product.price %>円<br><%= product.shipping_fee_id %></span>
+            <span><%= product.price %>円<br><%= product.shipping_fee.name %></span>
             <div class='star-btn'>
               <%= image_tag "star.png", class:"star-icon" %>
               <span class='star-count'>0</span>
@@ -156,7 +154,6 @@
         <% end %>
         <% end %>
       </li>
-      <%# //商品のインスタンス変数になにか入っている場合、中身のすべてを展開できるようにしましょう %>
 
       <%# 商品がない場合は以下のダミー商品が表示されるようにしましょう %>
       <%# 商品がある場合は表示されないようにしましょう %>
