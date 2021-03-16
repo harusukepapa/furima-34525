@@ -11,7 +11,7 @@ RSpec.describe Product, type: :model do
         expect(@product).to be_valid
       end
       it '販売価格は半角数字で登録できる' do
-        @product.price = '123456'
+        @product.price = 123456
         @product.valid?
       end
     end
