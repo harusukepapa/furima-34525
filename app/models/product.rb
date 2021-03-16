@@ -26,13 +26,13 @@ class Product < ApplicationRecord
   belongs_to :shipping_time
   #ActiveHashのアソシエーション・バリデーション
   
-
-  validates :category_id, numericality: { other_than: 1 } 
-  validates :condition_id, numericality: { other_than: 1 } 
-  validates :shipping_area_id, numericality: { other_than: 0 } 
-  validates :shipping_fee_id, numericality: { other_than: 1 } 
-  validates :shipping_time_id, numericality: { other_than: 1 } 
-
+  validates :shipping_area_id, numericality: { other_than: 0 }
+  with_options numericality: { other_than: 1 }  do
+  validates :category_id
+  validates :condition_id
+  validates :shipping_fee_id 
+  validates :shipping_time_id
+  end
   
   
   def was_attached?
