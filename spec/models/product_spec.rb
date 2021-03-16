@@ -13,6 +13,7 @@ RSpec.describe Product, type: :model do
       it '販売価格は半角数字で登録できる' do
         @product.price = 123456
         @product.valid?
+        expect(@product).to be_valid
       end
     end
 
@@ -85,7 +86,7 @@ RSpec.describe Product, type: :model do
       it '販売価格についての情報が空では登録できない' do
         @product.price = ''
         @product.valid?
-        expect(@product.errors.full_messages).to include ("Price can't be blank"), ("Price is not a number"), ("Price is invalid")
+        expect(@product.errors.full_messages).to include ("Price can't be blank"), ("Price is not a number")
       end
       it '販売価格は、¥300以下では登録できない' do
         @product.price = 299

@@ -9,7 +9,7 @@ class Product < ApplicationRecord
     validates :shipping_fee_id
     validates :shipping_area_id
     validates :shipping_time_id
-    validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }, format: { with: /\A[0-9]+\z/ }
+    validates :price, numericality: { only_integer: true, greater_than: 299, less_than: 10000000 }
   end
 
 
