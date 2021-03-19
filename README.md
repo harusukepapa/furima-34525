@@ -16,7 +16,7 @@
 ### Association
 
 * has_many :products
-* has_many :purchases_records
+* has_many :buyers
 
 
 ## products  table
@@ -36,38 +36,38 @@
 ### Association
 
 * belongs_to :user
-* has_one :purchases_record
+* has_one :buyer
 
 
-## purchases_records  table
+## buyers  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
 | user                     | references     | foreign_key: true |
-| product                  | references     | foreign_key: true |
+| buy_product              | references     | foreign_key: true |
 
 ### Association
 
 * belongs_to :user
 * belongs_to :product
-* has_one :delivery
+* has_one :address
 
 
-## deliveries  table
+## addresses  table
 
 | Column                   | Type           | Options           |
 |--------------------------|----------------|-------------------|
 | postal_code              | string         | null: false       |
 | shipping_area_id         | integer        | null: false       |
-| address                  | string         | null: false       |
 | city                     | string         | null: false       |
-| building                 | string         |                   |
+| house_number             | string         | null: false       |
+| building_name            | string         |                   |
 | phone_number             | string         | null: false       |
-| purchase_record          | references     | foreign_key: true |
+| buyer                    | references     | foreign_key: true |
 
 ### Association
 
-* belongs_to :purchases_record
+* belongs_to :buyer
 
 
 
