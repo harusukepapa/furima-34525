@@ -14,7 +14,7 @@ class Product < ApplicationRecord
 
 
   belongs_to :user
-  has_one :purchases_record
+  has_one :buyer
   has_one_attached :image
 
   #ActiveHashのアソシエーション・バリデーション

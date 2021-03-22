@@ -10,7 +10,7 @@ RSpec.describe BuyerAddress, type: :model do
   describe '商品購入機能' do
 
     context '商品購入が購入できるとき' do
-      it 'postal_code, shipping_area_id, city, house_number, building_name, phone_number, user_id, product_idが存在すれば登録できる' do
+      it 'postal_code, shipping_area_id, city, house_number, building_name, phone_number, user_id, product_id, tokenが存在すれば登録できる' do
         expect(@buyer_address).to be_valid
       end
       it '建物名は空でも保存できること' do
@@ -21,6 +21,11 @@ RSpec.describe BuyerAddress, type: :model do
 
     context '商品購入が購入できないとき' do
 
+      it "tokenが空では登録できないこと" do
+        @buyer_address.token = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+      end
       it '郵便番号が空だと保存できないこと' do
         @buyer_address.postal_code = ''
         @buyer_address.valid?

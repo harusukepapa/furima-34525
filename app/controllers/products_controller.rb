@@ -24,6 +24,9 @@ class ProductsController < ApplicationController
   end
 
   def edit
+    if ( @product.user_id == current_user.id ) == @product.buyer.present?
+      redirect_to root_path 
+    end
   end
 
   def update
@@ -52,7 +55,7 @@ class ProductsController < ApplicationController
   end
   
   def move_to_index
-    unless @product.user_id == current_user.id
+    unless @product.user_id == current_user.id 
       redirect_to products_path
     end 
   end

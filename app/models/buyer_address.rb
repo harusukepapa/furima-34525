@@ -1,10 +1,10 @@
 class BuyerAddress
   include ActiveModel::Model
-  attr_accessor :postal_code, :shipping_area_id, :city, :house_number, :building_name, :phone_number, :user_id, :product_id, token: params[:token]
+  attr_accessor :postal_code, :shipping_area_id, :city, :house_number, :building_name, :phone_number, :user_id, :product_id, :token
 
 
   with_options presence: true do
-    #validates :token
+    validates :token
     validates :postal_code, format: {with: /\A[0-9]{3}-[0-9]{4}\z/, message: "is invalid. Include hyphen(-)"}
     validates :city
     validates :house_number

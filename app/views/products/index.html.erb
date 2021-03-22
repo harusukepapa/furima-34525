@@ -132,10 +132,11 @@
         <div class='item-img-content'>
           <%= image_tag product.image, class: "item-img" %>
 
-          
-          <%# <div class='sold-out'> %>
-            <%# <span>Sold Out!!</span> %>
-          <%# </div> %>
+          <% if product.buyer.present?%>
+            <div class='sold-out'> 
+              <span>Sold Out!!</span> 
+            </div>
+          <% end %>
 
         </div>
         <div class='item-info'>
