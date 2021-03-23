@@ -59,7 +59,7 @@ class ProductsController < ApplicationController
   end
 
   def move_to_root
-    if ( @product.user_id == current_user.id ) == @product.buyer.present?
+    if ( @product.user_id == current_user.id ) || @product.buyer.present?
       redirect_to root_path 
     end
   end
