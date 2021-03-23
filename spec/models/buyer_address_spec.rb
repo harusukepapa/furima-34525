@@ -56,6 +56,11 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include ("Shipping area is not a number")
       end
+      it '発送元の地域は0以外でないと登録できない' do
+        @buyer_address.shipping_area_id = 0
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include ("Shipping area must be other than 0")
+      end
       it '市区町村ついての情報が空では登録できない' do
         @buyer_address.city = ''
         @buyer_address.valid?
