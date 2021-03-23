@@ -17,6 +17,11 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.building_name = ''
         expect(@buyer_address).to be_valid
       end
+      it '電話番号は10桁でも登録できる' do
+        @buyer_address.phone_number = '0120123456'
+        @buyer_address.valid?
+      end
+      
     end
 
     context '商品購入が購入できないとき' do

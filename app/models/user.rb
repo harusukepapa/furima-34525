@@ -22,6 +22,6 @@ class User < ApplicationRecord
 
   # アソシエーション
   has_many :products
-  has_many :buyer
+  has_many :buyers
 
 end
