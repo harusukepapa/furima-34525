@@ -26,6 +26,16 @@ RSpec.describe BuyerAddress, type: :model do
         @buyer_address.valid?
         expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
       end
+      it "user_idが空では登録できないこと" do
+        @buyer_address.user_id = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("User can't be blank")
+      end
+      it "product_idが空では登録できないこと" do
+        @buyer_address.product_id = nil
+        @buyer_address.valid?
+        expect(@buyer_address.errors.full_messages).to include("Product can't be blank")
+      end
       it '郵便番号が空だと保存できないこと' do
         @buyer_address.postal_code = ''
         @buyer_address.valid?
