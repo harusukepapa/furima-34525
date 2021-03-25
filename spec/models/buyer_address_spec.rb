@@ -29,62 +29,62 @@ RSpec.describe BuyerAddress, type: :model do
       it "tokenが空では登録できないこと" do
         @buyer_address.token = nil
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Token can't be blank")
+        expect(@buyer_address.errors.full_messages).to include("クレジット情報を入力してください")
       end
       it "user_idが空では登録できないこと" do
         @buyer_address.user_id = nil
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("User can't be blank")
+        expect(@buyer_address.errors.full_messages).to include("Userを入力してください")
       end
       it "product_idが空では登録できないこと" do
         @buyer_address.product_id = nil
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include("Product can't be blank")
+        expect(@buyer_address.errors.full_messages).to include("Productを入力してください")
       end
       it '郵便番号が空だと保存できないこと' do
         @buyer_address.postal_code = ''
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Postal code is invalid. Include hyphen(-)")
+        expect(@buyer_address.errors.full_messages).to include ("郵便番号を入力してください"),("郵便番号は不正な値です")
       end
       it '郵便番号が半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @buyer_address.postal_code = '1234567'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Postal code is invalid. Include hyphen(-)")
+        expect(@buyer_address.errors.full_messages).to include ("郵便番号は不正な値です")
       end
       it '都道府県についての情報が空では登録できない' do
         @buyer_address.shipping_area_id = ''
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Shipping area is not a number")
+        expect(@buyer_address.errors.full_messages).to include ("都道府県は数値で入力してください")
       end
       it '発送元の地域は0以外でないと登録できない' do
         @buyer_address.shipping_area_id = 0
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Shipping area must be other than 0")
+        expect(@buyer_address.errors.full_messages).to include ("都道府県は0以外の値にしてください")
       end
       it '市区町村ついての情報が空では登録できない' do
         @buyer_address.city = ''
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("City can't be blank")
+        expect(@buyer_address.errors.full_messages).to include ("市町村を入力してください")
       end
       it '番地ついての情報が空では登録できない' do
         @buyer_address.house_number = ''
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("House number can't be blank")
+        expect(@buyer_address.errors.full_messages).to include ("番地を入力してください")
       end
       it '電話番号ついての情報が空では登録できない' do
         @buyer_address.phone_number = ''
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Phone number can't be blank"),("Phone number is invalid")
+        expect(@buyer_address.errors.full_messages).to include ("電話番号を入力してください"),("電話番号は不正な値です")
       end
       it '電話番号は11桁以内の数値でなければ登録できない' do
         @buyer_address.phone_number = '090123456789'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Phone number is invalid")
+        expect(@buyer_address.errors.full_messages).to include ("電話番号は不正な値です")
       end
       it '電話番号は半角数字の数値でなければ登録できない' do
         @buyer_address.phone_number = '０９０１２３４５６７８'
         @buyer_address.valid?
-        expect(@buyer_address.errors.full_messages).to include ("Phone number is invalid")
+        expect(@buyer_address.errors.full_messages).to include ("電話番号は不正な値です")
       end
 
     end
